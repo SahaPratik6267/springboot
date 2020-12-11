@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping
+@RequestMapping(value = "/beverage")
 
 public class BeverageController {
     private List<Bottle> bottleList;
