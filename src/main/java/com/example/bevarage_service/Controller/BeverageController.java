@@ -26,7 +26,7 @@ public class BeverageController {
     public String getBottles(Model model) {
 
         model.addAttribute("Bottles", this.bottleList);
-
+//gekkiwgaishfkdjaskdfjhsa
         return "beverage";
     }
 }
