@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Service</title>
+    <title>Beverages</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -20,27 +20,76 @@
 </head>
 <body>
 
+<div th:replace="fragments/header :: header">...</div>
 
-<table class="table bg-light text-dark">
-    <thead>
-    <tr>
-        <th>name</th>
-        <th>Title</th>
-        <th>Won an Oscar</th>
-        <th>Year</th>
-        <th sec:authorize="hasRole('ROLE_ADMIN')">CreatedBy</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Bottle</h1>
+        </div>
 
-    <tr th:each="bottle : ${Bottles}">
+        <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="bottles : ${Bottles}">
+            <div class="card">
+                <img th:src="${bottles.bottlePic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">
+                <div class="card-body">
 
-        <td th:text="${bottle.name}"></td>
+                    <h5 class="card-title" th:text="'Beverage name : ' + ${bottles.name} + ''"> </h5>
+                    <p class="card-text" th:text="'Volume : ' + ${bottles.volume} + 'L'"></p>
+                    <p class="card-text" th:text="'Alcohol : ' + ${bottles.isAlcoholic} + ''"></p>
+                    <p class="card-text" th:text="'Alcohol percentage : ' + ${bottles.volumePercent} + '%'"></p>
+                    <p class="card-text" th:text="'Price : ' + ${bottles.price} + '$'"></p>
+                    <p class="card-text" th:text="'Supplier : ' + ${bottles.supplier} + ''"></p>
+                    <p class="card-text" th:text="'Stock : ' + ${bottles.inStock} + ''"></p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM4 14a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm7 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.354-7.646a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z">
+                                </path>
+                            </svg>
+                            Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </tr>
+    </div>
 
-    </tbody>
-</table>
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Crate</h1>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="crates : ${Crates}">
+            <div class="card">
+                <img th:src="${crates.cratePic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="'Crate name : ' + ${crates.name} + ''"></h5>
+                    <p class="card-text" th:text="'noOfBottles : ' + ${crates.noOfBottles} + ''"></p>
+                    <p class="card-text" th:text="'Price : ' + ${crates.price} + '$'"></p>
+                    <p class="card-text" th:text="'Stock : ' + ${crates.cratesInStock} + ''"></p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM4 14a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm7 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.354-7.646a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z">
+                                </path>
+                            </svg>
+                            Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer">...</div>
 
 
 </body>
