@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Bottle {
-    private long id;
+    private int id;
     private String name;
     private String bottlePic;
     private double volume;
