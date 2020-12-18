@@ -12,4 +12,8 @@ public class Crate {
     private int noOfBottles;
     private double price;
     private int cratesInStock;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e9a30788e39addfc868a01a472cd86fac480426
 }
