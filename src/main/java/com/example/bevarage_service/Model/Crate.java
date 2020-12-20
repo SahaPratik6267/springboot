@@ -12,8 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Crate {
+public class Crate extends Beverage {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")

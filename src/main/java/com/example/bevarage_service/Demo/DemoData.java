@@ -1,10 +1,5 @@
 package com.example.bevarage_service.Demo;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-
 import com.example.bevarage_service.Model.*;
 import com.example.bevarage_service.repository.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Slf4j
 @Component
@@ -61,17 +60,17 @@ public class DemoData {
         Orders CrateOrder = new Orders(2L, 15, null, Jessica);
 
 
-        Bottle Pepsi = new Bottle(1L, "Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, false, 0.0, 12, "Pepsi Inc.", 10, SoftDrink);
-        Bottle Cola = new Bottle(2L,"Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, false, 0.0, 10, "Coca-Cola Inc.", 15, null);
-        Bottle Corona = new Bottle(3L, "Corona", "https://cdn.pixabay.com/photo/2015/01/16/15/01/bottle-601566_960_720.jpg", 10.5, true, 8.5, 15, "Corona Inc.", 20, Beer);
+        Bottle Pepsi = new Bottle(1L, "Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, false, 0.0, 12, "Pepsi Inc.", 10, SoftDrink, null);
+        Bottle Cola = new Bottle(2L, "Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, false, 0.0, 10, "Coca-Cola Inc.", 15, null, null);
+        Bottle Corona = new Bottle(3L, "Corona", "https://cdn.pixabay.com/photo/2015/01/16/15/01/bottle-601566_960_720.jpg", 10.5, true, 8.5, 15, "Corona Inc.", 20, Beer, null);
 
-        OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder);
-        OrderItem crateItem = new OrderItem(2L, "2", 15, 1, CrateOrder);
+        OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder, Pepsi);
+        OrderItem crateItem = new OrderItem(2L, "2", 15, 1, CrateOrder, Corona);
 
 
         // saving bottles & orderItems
         this.bottleRepo.saveAll(Arrays.asList(Pepsi, Cola, Corona));
-        this.orderItemRepo.saveAll(Arrays.asList(bottleItem,crateItem));
+        this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
 
 
     }

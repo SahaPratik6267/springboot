@@ -3,3 +3,6 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT *
 SELECT[*] * FROM BOTTLE"; SQL statement:
 SELECT * FROM ADDRESS 
 SELECT * FROM BOTTLE [42000-200]
+2020-12-20 15:52:16 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM BOTTLE BOTTLE ORDERS[*]"; SQL statement:
+SELECT * FROM BOTTLE BOTTLE ORDERS [42000-200]

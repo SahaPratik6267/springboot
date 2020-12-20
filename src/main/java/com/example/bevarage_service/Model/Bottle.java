@@ -2,19 +2,17 @@ package com.example.bevarage_service.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-public class Bottle {
+public class Bottle extends Beverage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -38,7 +36,9 @@ public class Bottle {
     private String supplier;
     @PositiveOrZero(message = "Stock can not be less than zero")
     private int inStock;
-    @ManyToOne (cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Crate crate;
+    @OneToMany(mappedBy = "bottle", orphanRemoval = true)
+    private List<OrderItem> orderitems;
 
 }
