@@ -1,21 +1,20 @@
 package com.example.bevarage_service.Model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Crate extends Beverage {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")
     @Pattern(regexp = "^[0-9a-zA-Z]+$")
@@ -31,5 +30,18 @@ public class Crate extends Beverage {
     private int cratesInStock;
     @OneToMany(mappedBy = "crate")
     private List<Bottle> bottles;
+
+   
+    public Crate(String name, String cratePic, int noOfBottles, int price, int cratesInStock) {
+
+
+        this.name = name;
+        this.cratePic = cratePic;
+        this.noOfBottles = noOfBottles;
+        this.price = price;
+        this.cratesInStock = cratesInStock;
+
+
+    }
 
 }
