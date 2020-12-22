@@ -19,7 +19,8 @@ public class CartController {
 
         List<String> cartItems = (List<String>) session.getAttribute("CartSession");
 //        System.out.println(cartItems);
-        model.addAttribute("cartSession", cartItems !=null? cartItems :new ArrayList<>());
+        model.addAttribute("cartSession", cartItems != null ? cartItems : new ArrayList<>());
         return "basket";
     }
+    
 }

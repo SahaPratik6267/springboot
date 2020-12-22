@@ -27,12 +27,12 @@
             <h1>Your Orders</h1>
         </div><!--  col  -->
 
-        <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="orders : ${Orders}">
+        <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="orderItem : ${OrderItem}">
             <div class="card">
 
                 <div class="card-body">
 
-                    <p class="card-text" th:text="'Price : ' + ${orders.price} + '$'"></p>
+                    <p class="card-text" th:text="'Price : ' + ${orderItem.price} + '$'"></p>
 
 
                 </div>

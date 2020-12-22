@@ -1,5 +1,6 @@
 package com.example.bevarage_service.Controller;
 
+import com.example.bevarage_service.Model.OrderItem;
 import com.example.bevarage_service.Model.Orders;
 import com.example.bevarage_service.repository.OrderItemRepository;
 import com.example.bevarage_service.repository.OrdersRepository;
@@ -23,10 +24,10 @@ public class OrdersController {
 
     @GetMapping
     public String getOrdersByUserID(Model model) {
-        Orders orders = new Orders();
-        model.addAttribute("orders", orders);
-        model.addAttribute("Orders",this.ordersRepository.findAll());
-        model.addAttribute("Orders",this.orderItemRepository.findAll());
+        OrderItem OrderItem = new OrderItem();
+        model.addAttribute("OrderItem", OrderItem);
+        //model.addAttribute("Orders",this.ordersRepository.findAll());
+        model.addAttribute("OrderItem",this.orderItemRepository.findAll());
 
 
         return "orders";

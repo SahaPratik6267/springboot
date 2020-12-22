@@ -26,6 +26,8 @@ public class OrderItem {
     private int quantity;
     @ManyToOne(cascade = CascadeType.MERGE)
     private Orders orders;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Beverage beverage;
 }
 
 

@@ -2,24 +2,18 @@ package com.example.bevarage_service.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.constraints.NotEmpty;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Bottle {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Bottle extends Beverage {
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")
     @Pattern(regexp = "^[0-9a-zA-Z]+$")
@@ -40,7 +34,20 @@ public class Bottle {
     private String supplier;
     @PositiveOrZero(message = "Stock can not be less than zero")
     private int inStock;
-    @ManyToOne (cascade = CascadeType.MERGE)
-    private Crate crate;
 
+    public Bottle(@NotNull(message = "Name must be set") @NotEmpty(message = "Name not there") @Pattern(regexp = "^[0-9a-zA-Z]+$") String name, @NotNull @Pattern(regexp = "(https:\\/\\/).*\\.(?:jpg|gif|png)", message = "Must be a valid URL to a picture.") String bottlePic, @Positive(message = "Volume must be greater than zero") double volume, @PositiveOrZero double volumePercent, @Positive(message = "Price must be greater than zero") int price, @NotNull(message = "Supplier name must be set") @NotEmpty(message = "Supplier name not there") String supplier, @PositiveOrZero(message = "Stock can not be less than zero") int inStock) {
+        super();
+        this.name = name;
+        this.bottlePic = bottlePic;
+        this.volume = volume;
+        this.volumePercent = volumePercent;
+        if (volumePercent > 0.0) {
+            this.isAlcoholic = true;
+        } else {
+            this.isAlcoholic = false;
+        }
+        this.price = price;
+        this.supplier = supplier;
+        this.inStock = inStock;
+    }
 }
