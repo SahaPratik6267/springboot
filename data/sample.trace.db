@@ -3,6 +3,7 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT *
 SELECT[*] * FROM BOTTLE"; SQL statement:
 SELECT * FROM ADDRESS 
 SELECT * FROM BOTTLE [42000-200]
+<<<<<<< HEAD
 2020-12-20 14:38:45 database: wrong user or password; user: "SA"
 org.h2.message.DbException: Wrong user name or password [28000-200]
 	at org.h2.message.DbException.get(DbException.java:205)
@@ -5672,3 +5673,8 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Has
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 152 more
+=======
+2020-12-20 15:52:16 jdbc[24]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM BOTTLE BOTTLE ORDERS[*]"; SQL statement:
+SELECT * FROM BOTTLE BOTTLE ORDERS [42000-200]
+>>>>>>> 8c837d286e5ea17f69792e4ce276b158f3e3f210

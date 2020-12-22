@@ -1,25 +1,22 @@
 package com.example.bevarage_service.Model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotEmpty;
 
-@Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
-public class Bottle {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Data
+@RequiredArgsConstructor
+
+public class Bottle extends Beverage {
+
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")
     @Pattern(regexp = "^[0-9a-zA-Z]+$")
@@ -29,7 +26,7 @@ public class Bottle {
     private String bottlePic;
     @Positive(message = "Volume must be greater than zero")
     private double volume;
-    private boolean isAlcoholic;
+    private boolean isAlcoholic = false;
     //Have to implement further logic to set the is Alcoholic value when volumePercent is zero
     @PositiveOrZero
     private double volumePercent;
@@ -40,7 +37,26 @@ public class Bottle {
     private String supplier;
     @PositiveOrZero(message = "Stock can not be less than zero")
     private int inStock;
-    @ManyToOne (cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Crate crate;
+    @OneToMany(mappedBy = "bottle")
+    private List<OrderItem> orderitems;
+/*
+    public Bottle(Long Id, String name, String bottlePic, double volume, double volumePercent, int price, String supplier, int inStock, Crate crate) {
+        super(Id);
+        this.name = name;
+        this.bottlePic = bottlePic;
+        this.volume = volume;
+        this.volumePercent = volumePercent;
+        if (volumePercent > 0) {
+            this.isAlcoholic = true;
+        }
+        this.price = price;
+        this.supplier = supplier;
+        this.inStock = inStock;
+        this.crate = crate;
+
+
+    }*/
 
 }

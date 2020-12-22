@@ -1,8 +1,8 @@
 package com.example.bevarage_service.Model;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Sort;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,6 +26,8 @@ public class OrderItem {
     private int quantity;
     @ManyToOne(cascade = CascadeType.MERGE)
     private Orders orders;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Bottle bottle;
 }
 
 

@@ -1,10 +1,5 @@
 package com.example.bevarage_service.Demo;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-
 import com.example.bevarage_service.Model.*;
 import com.example.bevarage_service.repository.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Slf4j
 @Component
@@ -45,8 +44,11 @@ public class DemoData {
 
         // not storing the crates, users and orders directly. They are stored transitively (CASCADE.MERGE) when the bottles and orderItems are stored.
 
-        Crate SoftDrink = new Crate(1L, "DrinkCrate", "https://cdn.pixabay.com/photo/2015/07/13/18/46/pepsi-843648_960_720.jpg", 6, 10, 1, null);
-        Crate Beer = new Crate(2L, "BeerCrate", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 6, 15, 2, null);
+
+        // Beverage bev = new Crate(1L, "hellow", "GGWP", 5, 2, 10);
+
+        Crate SoftDrink = new Crate("DrinkCrate", "https://cdn.pixabay.com/photo/2015/07/13/18/46/pepsi-843648_960_720.jpg", 6, 10, 1);
+        Crate Beer = new Crate("BeerCrate", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 6, 15, 2);
 
         Address firstAddress = new Address(1L, "Baker Street", "22A", "96047", null);
         Address secondAddress = new Address(2L, "Pasadena", "4C", "96052", null);
@@ -60,18 +62,28 @@ public class DemoData {
         Orders BottleOrder = new Orders(1L, 48, null, Dan);
         Orders CrateOrder = new Orders(2L, 15, null, Jessica);
 
+        // Beverage pepsi = new Bottle("pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, 0.0, 12, "Pepsi INC", 100, SoftDrink);
+        Bottle pepsi = new Bottle();
+        pepsi.setName("pepsi");
+        pepsi.setCrate(SoftDrink);
+        pepsi.setBottlePic("https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg");
+        pepsi.setInStock(12);
+        pepsi.setSupplier("pepsi INC");
+        pepsi.setPrice(12);
+        pepsi.setVolumePercent(5.5);
+        pepsi.setVolume(2.5);
+        pepsi.setOrderitems(null);
+        //  Bottle pepsi = new Bottle("Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, 0.0, 12, "Pepsi Inc.", 10, SoftDrink, null);
+        //  Bottle Cola = new Bottle(2L, "Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, false, 0.0, 10, "Coca-Cola Inc.", 15, null, null);
+        //  Bottle Corona = new Bottle(3L, "Corona", "https://cdn.pixabay.com/photo/2015/01/16/15/01/bottle-601566_960_720.jpg", 10.5, true, 8.5, 15, "Corona Inc.", 20, Beer, null);
 
-        Bottle Pepsi = new Bottle(1L, "Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, false, 0.0, 12, "Pepsi Inc.", 10, SoftDrink);
-        Bottle Cola = new Bottle(2L,"Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, false, 0.0, 10, "Coca-Cola Inc.", 15, null);
-        Bottle Corona = new Bottle(3L, "Corona", "https://cdn.pixabay.com/photo/2015/01/16/15/01/bottle-601566_960_720.jpg", 10.5, true, 8.5, 15, "Corona Inc.", 20, Beer);
-
-        OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder);
-        OrderItem crateItem = new OrderItem(2L, "2", 15, 1, CrateOrder);
+        OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder, pepsi);
+        OrderItem crateItem = new OrderItem(2L, "2", 15, 1, CrateOrder, pepsi);
 
 
         // saving bottles & orderItems
-        this.bottleRepo.saveAll(Arrays.asList(Pepsi, Cola, Corona));
-        this.orderItemRepo.saveAll(Arrays.asList(bottleItem,crateItem));
+        this.bottleRepo.saveAll(Arrays.asList(pepsi));
+        this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
 
 
     }

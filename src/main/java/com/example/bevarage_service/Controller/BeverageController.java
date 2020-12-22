@@ -7,11 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.validation.Errors;
 
-import javax.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,8 @@ import java.util.List;
 public class BeverageController {
     private final List<Bottle> bottleList;
     private final List<Crate> crateList;
-    private final BottleRepository bottleRepository;
 
     public BeverageController(BottleRepository bottleRepository) {
-        this.bottleRepository = bottleRepository;
         this.bottleList = new ArrayList<>();
         this.crateList = new ArrayList<>();
 
@@ -33,28 +29,25 @@ public class BeverageController {
 
     @GetMapping
     public String getBottles(Model model) {
-        Bottle bottle = new Bottle();
-        //model.addAttribute("Bottles", this.bottleList);
+        model.addAttribute("Bottles", this.bottleList);
 
-        //model.addAttribute("Crates", this.crateList);
+        model.addAttribute("Crates", this.crateList);
 
-        model.addAttribute("bottle", bottle);
-        model.addAttribute("Bottles",this.bottleRepository.findAll());
         return "beverage";
     }
 
 
-    @PostMapping
-    public String addBottles(@Valid Bottle bottle, Errors errors, Model model){
-
-        if (errors.hasErrors()){
-            model.addAttribute("Bottles", this.bottleRepository.findAll());
-            return "beverage";
-        }
-        //bottle.setId("" + this.bottleRepository.count()+1);
-        this.bottleRepository.save(bottle);
-
-        return "redirect:/beverage";
-    }
+//    @PostMapping
+//    public String addBottles(@Valid Bottle bottle, Errors errors, Model model){
+//
+//        if (errors.hasErrors()){
+//            model.addAttribute("Bottles", this.bottleRepository.findAll());
+//            return "beverage";
+//        }
+//        //bottle.setId("" + this.bottleRepository.count()+1);
+//        this.bottleRepository.save(bottle);
+//
+//        return "redirect:/beverage";
+//    }
 
 }
