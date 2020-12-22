@@ -73,7 +73,8 @@ public class DemoData {
         // saving bottles & orderItems
         this.bottleRepo.saveAll(Arrays.asList(Pepsi, Cola, Corona));
         this.crateRepo.saveAll(Arrays.asList(PepsiCrate, BeerCrate));
-        this.orderItemRepo.saveAll(Arrays.asList(bottleItem,crateItem));
+        this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
+        //testing
 
     }
 }
