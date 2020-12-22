@@ -20,7 +20,32 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">...</div>
-<h2>Orders here</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Your Orders</h1>
+        </div><!--  col  -->
+
+        <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="orders : ${Orders}">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <p class="card-text" th:text="'Price : ' + ${orders.price} + '$'"></p>
+
+
+                </div>
+            </div><!--  card  -->
+        </div><!--  col  -->
+
+
+    </div><!--  row  -->
+</div>
+
+
 <div th:replace="fragments/footer :: footer">...</div>
+
+
 </body>
 </html>
