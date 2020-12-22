@@ -26,6 +26,11 @@
             <span class="text-muted">Your cart</span>
             <span class="badge badge-secondary badge-pill">3</span>
         </h4>
+
+        <ul th:each="cartItems : ${cartSession}">
+            <li th:text="${cartItems}">note</li>
+        </ul>
+
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
@@ -54,6 +59,9 @@
                 <strong>25 Euro</strong>
             </li>
         </ul>
+        <form th:action="@{/invalidate/session}" method="post">
+            <input type="submit" value="Remove Items" class="btn btn-danger"/>
+        </form>
     </div>
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>

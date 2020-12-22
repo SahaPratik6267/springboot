@@ -2,18 +2,18 @@ package com.example.bevarage_service.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.*;
 
-
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Bottle extends Beverage{
+public class Bottle extends Beverage {
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")
     @Pattern(regexp = "^[0-9a-zA-Z]+$")
@@ -41,7 +41,7 @@ public class Bottle extends Beverage{
         this.bottlePic = bottlePic;
         this.volume = volume;
         this.volumePercent = volumePercent;
-        if (volumePercent > 0.0){
+        if (volumePercent > 0.0) {
             this.isAlcoholic = true;
         } else {
             this.isAlcoholic = false;

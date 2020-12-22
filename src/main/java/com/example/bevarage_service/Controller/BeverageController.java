@@ -1,14 +1,17 @@
 package com.example.bevarage_service.Controller;
 
+import com.example.bevarage_service.Model.Beverage;
 import com.example.bevarage_service.Model.Bottle;
 import com.example.bevarage_service.Model.Crate;
+import com.example.bevarage_service.repository.BeverageRepository;
+import com.example.bevarage_service.repository.BottleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -18,40 +21,74 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/beverage")
 public class BeverageController {
-    private final List<Bottle> bottleList;
-    private final List<Crate> crateList;
+    private List<Bottle> bottleList;
+    private List<Crate> crateList;
+    private List<Beverage> beverageslist;
+    private final BottleRepository bottleRepository;
+    private final BeverageRepository bevarageRepository;
 
-    public BeverageController() {
+    public BeverageController(List<Beverage> beverageslist, BottleRepository bottleRepository, BeverageRepository bevarageRepository) {
+        this.beverageslist = beverageslist;
+        this.bottleRepository = bottleRepository;
+        this.bevarageRepository = bevarageRepository;
         this.bottleList = new ArrayList<>();
         this.crateList = new ArrayList<>();
 
-//        this.bottleList.add(new Bottle(1, "beer", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, true, 9.5, 2, "hasib", 5));
-//        this.bottleList.add(new Bottle(2, "cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 2, false, 0, 1, "shoiab", 10));
-//
-//        this.crateList.add(new Crate(1, "crate", "https://cdn.pixabay.com/photo/2017/03/12/18/24/beer-holder-2137721_960_720.jpg", 6, 10, 15));
-//        this.crateList.add(new Crate(2, "crate cola", "https://thumbs.dreamstime.com/z/vintage-drink-coca-cola-crate-bottles-product-shot-full-nostalgic-coke-item-soda-44113746.jpg", 10, 15, 10));
     }
 
 
     @GetMapping
     public String getBottles(Model model) {
+        Bottle bottle = new Bottle();
+        Beverage bev = new Beverage();
+
+        this.beverageslist.clear();
+        this.bottleList.clear();
+        this.crateList.clear();
+
+        this.beverageslist = this.bottleRepository.findAll();
+
+        for (Beverage b : this.beverageslist) {
+            if (b instanceof Bottle) {
+                this.bottleList.add((Bottle) b);
+            } else if (b instanceof Crate) {
+                this.crateList.add((Crate) b);
+            } else {
+                //error
+            }
+
+        }
+
+        System.out.println(this.bottleList);
+
 
         model.addAttribute("Bottles", this.bottleList);
 
         model.addAttribute("Crates", this.crateList);
 
-        model.addAttribute(new Bottle());
+
+        //model.addAttribute("Crates", this.crateList);
+
+        // model.addAttribute("bottle", bottle);
+        // model.addAttribute("bottles", this.bottleRepository.findAll());
+
+
         return "beverage";
     }
 
 
-//    @PostMapping
-//    public String addBottles(@Valid Bottle bottle, Error error, Model model){
-//
-//        bottle.setId( this.bottleList.size() + 1);
-//        this.bottleList.add(bottle);
-//
-//        return "beverage";
-//    }
+    @PostMapping
+    public String addBottles(@Valid Bottle bottle, Errors errors, Model model) {
+
+
+        if (errors.hasErrors()) {
+            model.addAttribute("Bottles", this.bottleRepository.findAll());
+            return "beverage";
+        }
+        //bottle.setId("" + this.bottleRepository.count()+1);
+        this.bottleRepository.save(bottle);
+
+        return "redirect:/beverage";
+    }
 
 }
