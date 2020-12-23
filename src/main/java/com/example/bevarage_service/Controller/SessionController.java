@@ -2,6 +2,7 @@ package com.example.bevarage_service.Controller;
 
 import com.example.bevarage_service.Model.Beverage;
 import com.example.bevarage_service.Model.Bottle;
+import com.example.bevarage_service.Model.Crate;
 import com.example.bevarage_service.Model.OrderItem;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
@@ -30,40 +31,44 @@ public class SessionController {
         bev.setName(b_name);
         bev.setPrice(b_price);
 
-        OrderItem ItemToAdd = new OrderItem();
 
-        ItemToAdd.setBeverage(bev);
-        ItemToAdd.setQuantity(2);
-        ItemToAdd.setPrice(10);
-        ItemToAdd.setPosition("3");
-
-        cartItems.add(new Gson().toJson(ItemToAdd));
+        cartItems.add(new Gson().toJson(bev));
         request.getSession().setAttribute("CartSession", cartItems);
-                //get the cartItems from request session
-     /*   List<String> cartItems = (List<String>) request.getSession().getAttribute("CartSession");
-        int totalprice = 0;
-        //check if cartItems is present in session or not
+
+
+        return "redirect:/beverage";
+    }
+
+    @PostMapping("/addToCartCrate")
+    public String addToCartCrate(@RequestParam Long c_id, @RequestParam String c_name, @RequestParam int c_price, HttpServletRequest request) {
+
+        List<String> cartItems = (List<String>) request.getSession().getAttribute("CartSession");
+
         if (cartItems == null) {
             cartItems = new ArrayList<>();
             // if cartItems object is not present in session, set cartItems in the request session
             request.getSession().setAttribute("CartSession", cartItems);
         }
-        cartItems.add(String.valueOf(b_id));
-        cartItems.add(b_name);
-        cartItems.add(String.valueOf(b_price));
-        totalprice = totalprice + b_price;
 
-        request.getSession().setAttribute("CartSession", cartItems);*/
+        Crate bev = new Crate();
+        bev.setId(c_id);
+        bev.setName(c_name);
+        bev.setPrice(c_price);
+
+
+        cartItems.add(new Gson().toJson(bev));
+        request.getSession().setAttribute("CartSession", cartItems);
+
+
         return "redirect:/beverage";
     }
-
 
     @PostMapping("/invalidate/session")
     public String destroySession(HttpServletRequest request) {
         //invalidate the session , this will clear the data from configured database (Mysql/redis/hazelcast)
 
         request.getSession().invalidate();
-        return "redirect:/basket";
+        return "redirect:/beverage";
     }
 
 }
