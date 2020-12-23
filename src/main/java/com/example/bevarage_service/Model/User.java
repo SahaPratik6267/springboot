@@ -15,10 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@NamedEntityGraph(name = "User.users",
-attributeNodes = @NamedAttributeNode(value = "addresses"))
+//@NamedEntityGraph(name = "User.users",
+//attributeNodes = @NamedAttributeNode(value = "addresses"))
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")
@@ -28,11 +29,9 @@ public class User {
     private String password;
     @Past(message = "Birth date must be in the past")
     private LocalDate birthday;
-    @OneToMany( mappedBy = "user", orphanRemoval = true)
-    private List<Orders> orders;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_address",
-            joinColumns=@JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="address_id"))
-    private List<Address> addresses;
+   // @ManyToMany(fetch = FetchType.LAZY)
+   // @JoinTable(name = "user_address",
+   //         joinColumns=@JoinColumn(name="user_id"),
+   //         inverseJoinColumns = @JoinColumn(name="address_id"))
+  // private List<Address> addresses;
 }
