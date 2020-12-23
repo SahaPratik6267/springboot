@@ -1,5 +1,9 @@
 package com.example.bevarage_service.Controller;
 
+import com.example.bevarage_service.Model.Beverage;
+import com.example.bevarage_service.Model.Bottle;
+import com.example.bevarage_service.Model.OrderItem;
+import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,8 +16,31 @@ import java.util.List;
 public class SessionController {
     @PostMapping("/addToCart")
     public String addToCart(@RequestParam Long b_id, @RequestParam String b_name, @RequestParam int b_price, HttpServletRequest request) {
-        //get the cartItems from request session
+
         List<String> cartItems = (List<String>) request.getSession().getAttribute("CartSession");
+
+        if (cartItems == null) {
+            cartItems = new ArrayList<>();
+            // if cartItems object is not present in session, set cartItems in the request session
+            request.getSession().setAttribute("CartSession", cartItems);
+        }
+
+        Bottle bev= new Bottle();
+        bev.setId(b_id);
+        bev.setName(b_name);
+        bev.setPrice(b_price);
+
+        OrderItem ItemToAdd = new OrderItem();
+
+        ItemToAdd.setBeverage(bev);
+        ItemToAdd.setQuantity(2);
+        ItemToAdd.setPrice(10);
+        ItemToAdd.setPosition("3");
+
+        cartItems.add(new Gson().toJson(ItemToAdd));
+        request.getSession().setAttribute("CartSession", cartItems);
+                //get the cartItems from request session
+     /*   List<String> cartItems = (List<String>) request.getSession().getAttribute("CartSession");
         int totalprice = 0;
         //check if cartItems is present in session or not
         if (cartItems == null) {
@@ -26,7 +53,7 @@ public class SessionController {
         cartItems.add(String.valueOf(b_price));
         totalprice = totalprice + b_price;
 
-        request.getSession().setAttribute("CartSession", cartItems);
+        request.getSession().setAttribute("CartSession", cartItems);*/
         return "redirect:/beverage";
     }
 

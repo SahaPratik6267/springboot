@@ -59,11 +59,11 @@ public class DemoData {
         // Saving two addresses
         this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
 
-        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12), null, new ArrayList<>(Arrays.asList(secondAddress, firstAddress)));
-        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23), null, new ArrayList<>(Arrays.asList(firstAddress)));
+        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12),new ArrayList<>(Arrays.asList(secondAddress, firstAddress)));
+        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23), new ArrayList<>(Arrays.asList(firstAddress)));
 
-        Orders BottleOrder = new Orders(1L, 48, null, Dan);
-        Orders CrateOrder = new Orders(2L, 15, null, Jessica);
+        Orders BottleOrder = new Orders(1L, 48,  Dan);
+        Orders CrateOrder = new Orders(2L, 15,  Jessica);
 
 
         OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder, Pepsi);

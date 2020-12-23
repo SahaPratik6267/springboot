@@ -28,8 +28,6 @@ public class User {
     private String password;
     @Past(message = "Birth date must be in the past")
     private LocalDate birthday;
-    @OneToMany( mappedBy = "user", orphanRemoval = true)
-    private List<Orders> orders;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_address",
             joinColumns=@JoinColumn(name="user_id"),

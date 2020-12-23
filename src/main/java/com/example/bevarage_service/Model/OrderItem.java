@@ -2,12 +2,10 @@ package com.example.bevarage_service.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NamedQuery;
 import org.springframework.data.domain.Sort;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
@@ -15,8 +13,10 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+//@NamedQuery(name = "OrderItem.findAllByCurrentUser",query = "select u from OrderItem u where u.orders.id = 1")
 public class OrderItem {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Pattern(regexp = "^[0-9]*$")
     private String position;

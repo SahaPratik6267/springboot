@@ -14,11 +14,10 @@ import java.util.List;
 @Entity
 public class Orders {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Positive(message = "Price must be greater than zero")
     private int price;
-    @OneToMany(mappedBy = "orders", orphanRemoval = true)
-    private List<OrderItem> orderitems;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 }
