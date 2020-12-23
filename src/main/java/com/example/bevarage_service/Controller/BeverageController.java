@@ -69,8 +69,10 @@ public class BeverageController {
 
         //model.addAttribute("Crates", this.crateList);
 
+
          model.addAttribute("bottle", bottle);
          model.addAttribute("bottles", this.bottleRepository.findAll());
+
 
 
         return "beverage";
@@ -82,10 +84,37 @@ public class BeverageController {
 
 
         if (errors.hasErrors()) {
-            model.addAttribute("Bottles", this.bottleRepository.findAll());
+            this.beverageslist.clear();
+            this.bottleList.clear();
+            this.crateList.clear();
+
+            this.beverageslist = this.bottleRepository.findAll();
+
+            for (Beverage b : this.beverageslist) {
+                if (b instanceof Bottle) {
+                    this.bottleList.add((Bottle) b);
+                } else if (b instanceof Crate) {
+                    this.crateList.add((Crate) b);
+                } else {
+                    //error
+                }
+
+            }
+            model.addAttribute("Bottles", this.bottleList);
+
+            model.addAttribute("Crates", this.crateList);
+
+
+            //model.addAttribute("Crates", this.crateList);
+
+            model.addAttribute("bottle", bottle);
+            model.addAttribute("bottles", this.bottleRepository.findAll());
+
+
             return "beverage";
+
         }
-        //bottle.setId("" + this.bottleRepository.count()+1);
+
         this.bottleRepository.save(bottle);
 
         return "redirect:/beverage";
