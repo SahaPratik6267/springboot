@@ -31,8 +31,11 @@
             <div class="card">
 
                 <div class="card-body">
-
+                    <p class="card-text" th:text="'orders : ' + ${orderItem.ID}"></p>
                     <p class="card-text" th:text="'Price : ' + ${orderItem.price} + '$'"></p>
+                    <p class="card-text" th:text="'quantity : ' + ${orderItem.quantity}"></p>
+<!--                    <p class="card-text" th:text="'Price : ' + ${orderItem.beverage} + '$'"></p>-->
+
 
 
                 </div>
