@@ -90,7 +90,7 @@ public class CartController {
 
         int position=0;
         int quantity = bev_quantity;
-        int bprice=bev_price;
+        int bprice=bev_price*bev_quantity;
         OrderItem item = new OrderItem();
 
         if(bottleRepository.existsById(bev_id)){
