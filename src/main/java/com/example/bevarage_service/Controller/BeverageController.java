@@ -75,7 +75,8 @@ public class BeverageController {
 
         model.addAttribute("bottle", bottle);
         model.addAttribute("crate", crate);
-        model.addAttribute("bottles", this.bottleRepository.findAll());
+        //model.addAttribute("bottles", this.bottleRepository.findAll());
+
 
 
         return "beverage";
