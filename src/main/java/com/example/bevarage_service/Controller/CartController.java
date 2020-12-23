@@ -1,9 +1,6 @@
 package com.example.bevarage_service.Controller;
 
-import com.example.bevarage_service.Model.Address;
-import com.example.bevarage_service.Model.OrderItem;
-import com.example.bevarage_service.Model.Orders;
-import com.example.bevarage_service.Model.User;
+import com.example.bevarage_service.Model.*;
 import com.example.bevarage_service.repository.AddressRepository;
 import com.example.bevarage_service.repository.OrderItemRepository;
 import com.example.bevarage_service.repository.OrdersRepository;
@@ -43,18 +40,25 @@ public class CartController {
     @GetMapping
     public String getBottles(Model model, HttpSession session) {
 
+        List<OrderItem> orderItems= new ArrayList<>();
          cartItems = (List<String>) session.getAttribute("CartSession");
         System.out.println(cartItems);
+
+        for (String item:cartItems) {
+            orderItems.add(new Gson().fromJson(item,OrderItem.class));
+             }
+
+        System.out.println();
         model.addAttribute("cartSession", cartItems != null ? cartItems : new ArrayList<>());
         return "basket";
     }
     @PostMapping
     public String submitOrders(Model model){
-        Address firstAddress = new Address(3L, "Baker Street", "22A", "96047", null);
-        Address secondAddress = new Address(4L, "Pasadena", "4C", "96052", null);
+        Address firstAddress = new Address(3L, "Baker Street", "22A", "96047");
+        Address secondAddress = new Address(4L, "Pasadena", "4C", "96052");
 
         this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
-        User Dan = new User(3L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12),new ArrayList<>(Arrays.asList(secondAddress, firstAddress)));
+        //User Dan = new User(3L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12),new ArrayList<>(Arrays.asList(secondAddress, firstAddress)));
 
        
 
@@ -66,7 +70,7 @@ public class CartController {
         }
         Orders createOrders= new Orders();
         createOrders.setPrice(100);
-        createOrders.setUser(Dan);
+       // createOrders.setUser(Dan);
 
         this.ordersrepo.save(createOrders);
 

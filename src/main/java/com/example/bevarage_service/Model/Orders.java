@@ -12,12 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+//@NamedEntityGraph(name = "Orders.users", // entity graph solution
+ //       attributeNodes = @NamedAttributeNode(value="user")) // entity graph solution// entity graph solution
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Positive(message = "Price must be greater than zero")
     private int price;
+ //   @OneToMany(mappedBy = "orders")
+  //  private List<OrderItem> orderitems;
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 }

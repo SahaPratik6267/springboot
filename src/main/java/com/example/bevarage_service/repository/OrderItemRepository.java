@@ -10,6 +10,6 @@ import java.util.List;
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
 
-   // @Query(value = "SELECT * FROM ORDER_ITEM i where i.Orders.id  = 1")
-   // public List<OrderItem> findAllByCurrentUser();
+   @Query(value = "SELECT * FROM ORDER_ITEM WHERE ORDERS_ID  = ?1",nativeQuery = true)
+   public List<OrderItem> findAllByOrderID(Long Id);
 }
