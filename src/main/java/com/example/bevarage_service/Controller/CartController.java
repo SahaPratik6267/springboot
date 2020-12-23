@@ -1,25 +1,21 @@
 package com.example.bevarage_service.Controller;
 
 import com.example.bevarage_service.Model.*;
-import com.example.bevarage_service.repository.AddressRepository;
-import com.example.bevarage_service.repository.OrderItemRepository;
-import com.example.bevarage_service.repository.OrdersRepository;
-import com.example.bevarage_service.repository.UserRepository;
+import com.example.bevarage_service.repository.*;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -33,12 +29,17 @@ public class CartController {
     final AddressRepository addressRepo;
     final UserRepository userrepo;
     final OrdersRepository ordersrepo;
+    final BottleRepository bottleRepository;
+    final CrateRepository crateRepository;
 
-    public CartController(OrderItemRepository orderItemRepository, AddressRepository addressRepo, UserRepository userrepo, OrdersRepository ordersrepo) {
+    public CartController(OrderItemRepository orderItemRepository, AddressRepository addressRepo, UserRepository userrepo, OrdersRepository ordersrepo, BottleRepository bottleRepository, CrateRepository crateRepository) {
         this.orderItemRepository = orderItemRepository;
         this.addressRepo = addressRepo;
         this.userrepo = userrepo;
         this.ordersrepo = ordersrepo;
+        this.bottleRepository = bottleRepository;
+        this.crateRepository = crateRepository;
+
     }
 
     @GetMapping
@@ -56,7 +57,7 @@ public class CartController {
 
     }
     @PostMapping(value = "/finalsubmit")
-    public String submitOrders(Model model){
+    public String submitOrders(Model model, HttpServletRequest request){
 
         User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12));
        int totalPrice=0;
@@ -79,26 +80,36 @@ public class CartController {
 
         orderItemRepository.saveAll(finalItems);
 
-      //  new SessionController().destroySession();
+        request.getSession().invalidate();
 
-
-
-//        model.addAttribute("cartSessionCrate",crateItems);
-       // model.addAttribute("cartSession", bottleItems);
         return "orders";
     }
 
 
     @PostMapping
-    public String submitOrder(Model model, @RequestParam Long bev_id, @RequestParam int bev_quantity, @RequestParam int bev_price){
+    public String submitOrder(Model model, @RequestParam Long bev_id, @RequestParam int bev_quantity, @RequestParam int bev_price, Errors error){
 
-
+        int position=0;
+        int quantity = bev_quantity;
+        int bprice=bev_price;
         OrderItem item = new OrderItem();
 
+        if(bottleRepository.existsById(bev_id)){
+           if  (quantity>bottleRepository.findbottlestockById(bev_id));
+            {
+                System.out.println("error in quantity");
+            }
+        }
+        else{
+            if  (quantity>crateRepository.findCratestockById(bev_id));
+            {
+                System.out.println("error in quantity");
+            }
 
-       int position=0;
-       int quantity = bev_quantity;
-       int bprice=bev_price;
+        }
+
+
+
 
 
 

@@ -41,10 +41,11 @@ public class OrdersController {
         for(int i=0; i<orders.stream().count();i++) {
             orderitems.put(orders.get(i).getId(), orderItemRepository.findAllByOrderID(orders.get(i).getId()));
             ordermap.put(orders.get(i).getId(),(orders.get(i).getPrice()));
-        }
 
+        }
+        System.out.println(ordermap.get(7L));
         model.addAttribute("allordersmap", this.orderitems);
-        //model.addAttribute("ordermap", this.ordermap);
+        model.addAttribute("ordermap", this.ordermap);
 
         System.out.println(orderitems);
 
