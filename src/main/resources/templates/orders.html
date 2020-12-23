@@ -26,9 +26,13 @@
     <div class="col-md-12 text-center">
         <h1>Orders</h1>
     </div><!--  col  -->
-
-    <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="entry: ${allordersmap}">
-        <span th:text="${entry.key}"></span> = <span th:object="=${entry.value.beverage.name}"></span>
+    <ul>
+        <li th:each="entry: ${allordersmap}">
+            <span th:text="${entry.key}"></span> = <span th:text="${entry.value}"></span>
+        </li>
+    </ul>
+<!--    <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="entry: ${allordersmap}">-->
+<!--        <span th:text="${entry.key}"></span> = <span th:text="=${entry.value}"></span>-->
 
 <!--        <div class="card">-->
 <!--            <img th:src="${bottle.bottlePic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">-->
