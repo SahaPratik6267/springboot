@@ -13,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@NamedEntityGraph(name = "Address.users",
-attributeNodes = @NamedAttributeNode("users"))
+//@NamedEntityGraph(name = "Address.users",
+//attributeNodes = @NamedAttributeNode("users"))
 public class Address {
     @Id
     private Long id;
@@ -28,6 +28,7 @@ public class Address {
     @NotEmpty(message = "Postal code not there")
     @Pattern(regexp = "\\b\\d{5}\\b")
     private String postalCode;
-    @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> users;
+//    @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<User> users;
+
 }

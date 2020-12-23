@@ -53,17 +53,18 @@ public class DemoData {
         Crate PepsiCrate = new Crate("PepsiCrate", "https://cdn.pixabay.com/photo/2015/07/13/18/46/pepsi-843648_960_720.jpg", 6, 10, 1, Pepsi);
         Crate BeerCrate = new Crate("CoronaCrate", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 6, 15, 2, Corona);
 
-        Address firstAddress = new Address(1L, "Baker Street", "22A", "96047", null);
-        Address secondAddress = new Address(2L, "Pasadena", "4C", "96052", null);
+        Address firstAddress = new Address(1L, "Baker Street", "22A", "96047");
+        Address secondAddress = new Address(2L, "Pasadena", "4C", "96052");
 
         // Saving two addresses
         this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
 
-        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12), null, new ArrayList<>(Arrays.asList(secondAddress, firstAddress)));
-        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23), null, new ArrayList<>(Arrays.asList(firstAddress)));
+        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12));
+        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23));
 
-        Orders BottleOrder = new Orders(1L, 48, null, Dan);
-        Orders CrateOrder = new Orders(2L, 15, null, Jessica);
+        Orders BottleOrder =
+                new Orders(1L, 48,  Dan);
+        Orders CrateOrder = new Orders(2L, 15, Jessica);
 
 
         OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder, Pepsi);
