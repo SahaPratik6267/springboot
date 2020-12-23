@@ -23,48 +23,48 @@
 <br>
 
 <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form method="POST" th:action="@{/beverage}" th:object="${bottle}">
-                    <tr>
-                        <td>
-                            URL: <input name="bottlePic" th:field="*{bottlePic}" type="text"/>
-                            <span class="text-danger" th:if="${#fields.hasErrors('bottlePic')}"
-                                  th:errors="*{bottlePic}"></span>
-                        </td>
-                        <td>
-                            Name: <input name="name" th:field="*{name}" type="text">
-                            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-                        </td>
-                        <td>
-                            Volume: <input name="volume" th:field="*{volume}" type="text">
-                            <span class="text-danger" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></span>
-                        </td>
-                        <td>
-                            VolumePercent: <input name="volumePercent" th:field="*{volumePercent}" type="text">
-                            <span class="text-danger" th:if="${#fields.hasErrors('volumePercent')}"
-                                  th:errors="*{volumePercent}"></span>
-                        </td>
-                        <td>
-                            Price: <input name="price" th:field="*{price}" type="text">
-                            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-                        </td>
-                        <td>
-                            Supplier: <input name="supplier" th:field="*{supplier}" type="text">
-                            <span class="text-danger" th:if="${#fields.hasErrors('supplier')}"
-                                  th:errors="*{supplier}"></span>
-                        </td>
-                        <td>
-                            In Stock: <input name="inStock" th:field="*{inStock}" type="text">
-                            <span class="text-danger" th:if="${#fields.hasErrors('inStock')}" th:errors="*{inStock}"></span>
-                        </td>
-                        <td>
-                            <button type="submit" class="btn btn-info">Create Bottle</button>
-                        </td>
-                    </tr>
-                </form>
-            </div><!--  col -->
-        </div> <!--  row  -->
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" th:action="@{/beverage/bottle}" th:object="${bottle}">
+                <tr>
+                    <td>
+                        URL: <input name="bottlePic" th:field="*{bottlePic}" type="text"/>
+                        <span class="text-danger" th:if="${#fields.hasErrors('bottlePic')}"
+                              th:errors="*{bottlePic}"></span>
+                    </td>
+                    <td>
+                        Name: <input name="name" th:field="*{name}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </td>
+                    <td>
+                        Volume: <input name="volume" th:field="*{volume}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></span>
+                    </td>
+                    <td>
+                        VolumePercent: <input name="volumePercent" th:field="*{volumePercent}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('volumePercent')}"
+                              th:errors="*{volumePercent}"></span>
+                    </td>
+                    <td>
+                        Price: <input name="price" th:field="*{price}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                    </td>
+                    <td>
+                        Supplier: <input name="supplier" th:field="*{supplier}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('supplier')}"
+                              th:errors="*{supplier}"></span>
+                    </td>
+                    <td>
+                        In Stock: <input name="inStock" th:field="*{inStock}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('inStock')}" th:errors="*{inStock}"></span>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info">Create Bottle</button>
+                    </td>
+                </tr>
+            </form>
+        </div><!--  col -->
+    </div> <!--  row  -->
 
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
@@ -104,7 +104,38 @@
         </div><!--  col  -->
     </div><!--  row  -->
 
-
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" th:action="@{/beverage/crate}" th:object="${crate}">
+                <tr>
+                    <td>
+                        URL: <input name="cratePic" th:field="*{cratePic}" type="text"/>
+                        <span class="text-danger" th:if="${#fields.hasErrors('cratePic')}"
+                              th:errors="*{cratePic}"></span>
+                    </td>
+                    <td>
+                        Name: <input name="name" th:field="*{name}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </td>
+                    <td>
+                        noOfBottles: <input name="noOfBottles" th:field="*{noOfBottles}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('noOfBottles')}" th:errors="*{noOfBottles}"></span>
+                    </td>
+                    <td>
+                        Price: <input name="price" th:field="*{price}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                    </td>
+                    <td>
+                        cratesInStock: <input name="cratesInStock" th:field="*{cratesInStock}" type="text">
+                        <span class="text-danger" th:if="${#fields.hasErrors('cratesInStock')}"
+                              th:errors="*{cratesInStock}"></span>
+                    </td>
+                    <button type="submit" class="btn btn-info">Create Crate</button>
+                    </td>
+                </tr>
+            </form>
+        </div><!--  col -->
+    </div> <!--  row  -->
 
     <div class="row justify-content-center">
         <div class="col-md-12 text-center">
