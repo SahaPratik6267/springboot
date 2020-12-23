@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,12 +81,12 @@ public class CartController {
 
         request.getSession().invalidate();
 
-        return "orders";
+        return "redirect:/orders";
     }
 
 
     @PostMapping
-    public String submitOrder(Model model, @RequestParam Long bev_id, @RequestParam int bev_quantity, @RequestParam int bev_price, Errors error){
+    public String submitOrder(Model model, @RequestParam Long bev_id, @RequestParam int bev_quantity, @RequestParam int bev_price){
 
         int position=0;
         int quantity = bev_quantity;
