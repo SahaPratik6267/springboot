@@ -19,6 +19,7 @@ import java.util.List;
 //attributeNodes = @NamedAttributeNode(value = "addresses"))
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")

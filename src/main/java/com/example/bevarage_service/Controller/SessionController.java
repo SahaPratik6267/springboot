@@ -63,7 +63,7 @@ public class SessionController {
         return "redirect:/beverage";
     }
 
-    @PostMapping("/invalidate/session")
+
     public String destroySession(HttpServletRequest request) {
         //invalidate the session , this will clear the data from configured database (Mysql/redis/hazelcast)
 
