@@ -59,8 +59,8 @@ public class DemoData {
         // Saving two addresses
         this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
 
-        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12));
-        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23));
+        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12),true,"ADMIN");
+        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23),true,"ADMIN,USER");
 
         Orders BottleOrder =
                 new Orders(1L, 48,  Dan);

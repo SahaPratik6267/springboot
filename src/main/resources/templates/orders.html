@@ -34,6 +34,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Position</th>
+                    <th scope="col">Image</th>
 
                 </tr>
                 </thead>
@@ -44,6 +45,7 @@
                     <td th:text="${orderItem.Price}"></td>
                     <td th:text="${orderItem.quantity}"></td>
                     <td th:text="${orderItem.position}"></td>
+                    <td><img th:src="${orderItem.Beverage.bottlePic}" style="width: auto; height: 100px;"></td>
                 </tr>
 
 
@@ -56,7 +58,7 @@
                 </tr>
                 </thead>
                 <tbody th:each="entry: ${allordersmap}">
-                <tr th:each="orderItem : ${entry.value}">
+                <tr th:each="orderItem, iterStat : ${entry.value}" th:if="${iterStat.index >= iterStat.size-1}">
                     <td th:text="${orderItem.Orders.price}"></td>
                 </tr>
                 </tbody>

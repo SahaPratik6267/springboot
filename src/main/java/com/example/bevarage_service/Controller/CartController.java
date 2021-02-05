@@ -59,7 +59,7 @@ public class CartController {
     @PostMapping(value = "/finalsubmit")
     public String submitOrders(Model model, HttpServletRequest request){
 
-        User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12));
+        User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12),true,"ADMIN");
        int totalPrice=0;
 
         Orders createOrders= new Orders();
