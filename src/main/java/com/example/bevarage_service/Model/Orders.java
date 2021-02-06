@@ -14,7 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@NamedEntityGraph(name = "Orders.users", attributeNodes = @NamedAttributeNode(value="user"))
+@Table(name="orders")
+//@NamedEntityGraph(name = "Orders.users", attributeNodes = @NamedAttributeNode(value="user"))
+
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +27,6 @@ public class Orders {
   //  private List<OrderItem> orderitems;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-    private User user;
+    private User users;
 
 }

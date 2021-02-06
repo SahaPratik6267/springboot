@@ -30,6 +30,7 @@ public class CartController {
     final OrdersRepository ordersrepo;
     final BottleRepository bottleRepository;
     final CrateRepository crateRepository;
+    int position=0;
 
     public CartController(OrderItemRepository orderItemRepository, AddressRepository addressRepo, UserRepository userrepo, OrdersRepository ordersrepo, BottleRepository bottleRepository, CrateRepository crateRepository) {
         this.orderItemRepository = orderItemRepository;
@@ -58,7 +59,11 @@ public class CartController {
     @PostMapping(value = "/finalsubmit")
     public String submitOrders(Model model, HttpServletRequest request){
 
+
       //  User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12),null);
+
+        User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12) ,null,null,true,"ADMIN");
+
        int totalPrice=0;
 
         Orders createOrders= new Orders();
@@ -81,6 +86,8 @@ public class CartController {
 
         request.getSession().invalidate();
 
+        finalItems.clear();
+
         return "redirect:/orders";
     }
 
@@ -88,7 +95,6 @@ public class CartController {
     @PostMapping
     public String submitOrder(Model model, @RequestParam Long bev_id, @RequestParam int bev_quantity, @RequestParam int bev_price){
 
-        int position=0;
         int quantity = bev_quantity;
         int bprice=bev_price*bev_quantity;
         OrderItem item = new OrderItem();

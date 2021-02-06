@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,6 +32,6 @@ public class Address {
     @Pattern(regexp = "\\b\\d{5}\\b")
     private String postalCode;
    @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-   private List<User> users;
+   private Set<User> users;
 
 }

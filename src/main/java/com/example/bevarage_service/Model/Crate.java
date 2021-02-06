@@ -38,4 +38,13 @@ public class Crate extends Beverage{
         this.cratesInStock = cratesInStock;
         this.bottles = bottles;
     }
+
+    public Crate( @NotNull(message = "Name must be set") @NotEmpty(message = "Name not there") @Pattern(regexp = "^[0-9a-zA-Z]+$") String name, @NotNull @Pattern(regexp = "(https:\\/\\/).*\\.(?:jpg|gif|png)", message = "Must be a valid URL to a picture.") String cratePic, @Positive(message = "Number of Bottles must be greater than zero") int noOfBottles, @Positive(message = "Price must be greater than zero") int price, @PositiveOrZero(message = "Stock can not be less than zero") int cratesInStock) {
+        super();
+        this.name = name;
+        this.cratePic = cratePic;
+        this.noOfBottles = noOfBottles;
+        this.price = price;
+        this.cratesInStock = cratesInStock;
+    }
 }

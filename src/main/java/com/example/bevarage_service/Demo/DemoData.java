@@ -43,6 +43,10 @@ public class DemoData {
     @EventListener
     public void createDemoData(ApplicationReadyEvent event) {
 
+        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12),null,null,true,"ADMIN");
+        this.userRepos.save(Dan);
+
+
 //
 //        Bottle Pepsi = new Bottle("Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, 0.0, 12, "Pepsi Inc.", 10);
 //        Bottle Cola = new Bottle("Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, 0.0, 10, "Coca-Cola Inc.", 15);
@@ -75,6 +79,9 @@ public class DemoData {
 //        this.bottleRepo.saveAll(Arrays.asList(Pepsi, Cola, Corona));
 //        this.crateRepo.saveAll(Arrays.asList(PepsiCrate, BeerCrate));
 //        this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
+
+
+
         //testing
 
     }
