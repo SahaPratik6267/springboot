@@ -2,6 +2,7 @@ package com.example.bevarage_service.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 //@NamedEntityGraph(name = "Address.users",
 //attributeNodes = @NamedAttributeNode("users"))
 public class Address {
@@ -28,7 +30,7 @@ public class Address {
     @NotEmpty(message = "Postal code not there")
     @Pattern(regexp = "\\b\\d{5}\\b")
     private String postalCode;
-//    @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<User> users;
+   @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   private List<User> users;
 
 }

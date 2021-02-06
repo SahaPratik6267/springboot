@@ -2,6 +2,8 @@ package com.example.bevarage_service.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -12,8 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@NamedEntityGraph(name = "Orders.users", // entity graph solution
- //       attributeNodes = @NamedAttributeNode(value="user")) // entity graph solution// entity graph solution
+@NamedEntityGraph(name = "Orders.users", attributeNodes = @NamedAttributeNode(value="user"))
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +23,8 @@ public class Orders {
     private int price;
  //   @OneToMany(mappedBy = "orders")
   //  private List<OrderItem> orderitems;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
     private User user;
+
 }

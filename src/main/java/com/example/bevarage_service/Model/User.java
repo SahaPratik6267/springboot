@@ -3,6 +3,7 @@ package com.example.bevarage_service.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -15,8 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@NamedEntityGraph(name = "User.users",
-//attributeNodes = @NamedAttributeNode(value = "addresses"))
+@ToString
+//@NamedEntityGraph(name = "User.orders", attributeNodes = @NamedAttributeNode(value = "orders"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +30,11 @@ public class User {
     private String password;
     @Past(message = "Birth date must be in the past")
     private LocalDate birthday;
-   // @ManyToMany(fetch = FetchType.LAZY)
-   // @JoinTable(name = "user_address",
-   //         joinColumns=@JoinColumn(name="user_id"),
-   //         inverseJoinColumns = @JoinColumn(name="address_id"))
-  // private List<Address> addresses;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Orders> orders;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_address",
+            joinColumns=@JoinColumn(name="user_id"),
+           inverseJoinColumns = @JoinColumn(name="address_id"))
+   private List<Address> addresses;
 }

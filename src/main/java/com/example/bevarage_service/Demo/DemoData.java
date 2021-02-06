@@ -43,38 +43,38 @@ public class DemoData {
     @EventListener
     public void createDemoData(ApplicationReadyEvent event) {
 
-
-        Bottle Pepsi = new Bottle("Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, 0.0, 12, "Pepsi Inc.", 10);
-        Bottle Cola = new Bottle("Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, 0.0, 10, "Coca-Cola Inc.", 15);
-        Bottle Corona = new Bottle("Corona", "https://cdn.pixabay.com/photo/2015/01/16/15/01/bottle-601566_960_720.jpg", 10.5, 8.5, 15, "Corona Inc.", 20);
-
-        // not storing the crates, users and orders directly. They are stored transitively (CASCADE.MERGE) when the bottles and orderItems are stored.
-
-        Crate PepsiCrate = new Crate("PepsiCrate", "https://cdn.pixabay.com/photo/2015/07/13/18/46/pepsi-843648_960_720.jpg", 6, 10, 1, Pepsi);
-        Crate BeerCrate = new Crate("CoronaCrate", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 6, 15, 2, Corona);
-
-        Address firstAddress = new Address(1L, "Baker Street", "22A", "96047");
-        Address secondAddress = new Address(2L, "Pasadena", "4C", "96052");
-
-        // Saving two addresses
-        this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
-
-        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12));
-        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23));
-
-        Orders BottleOrder =
-                new Orders(1L, 48,  Dan);
-        Orders CrateOrder = new Orders(2L, 15, Jessica);
-
-
-        OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder, Pepsi);
-        OrderItem crateItem = new OrderItem(2L, "2", 15, 1, CrateOrder, BeerCrate);
-
-
-        // saving bottles & orderItems
-        this.bottleRepo.saveAll(Arrays.asList(Pepsi, Cola, Corona));
-        this.crateRepo.saveAll(Arrays.asList(PepsiCrate, BeerCrate));
-        this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
+//
+//        Bottle Pepsi = new Bottle("Pepsi", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 5.5, 0.0, 12, "Pepsi Inc.", 10);
+//        Bottle Cola = new Bottle("Cola", "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_960_720.jpg", 7.5, 0.0, 10, "Coca-Cola Inc.", 15);
+//        Bottle Corona = new Bottle("Corona", "https://cdn.pixabay.com/photo/2015/01/16/15/01/bottle-601566_960_720.jpg", 10.5, 8.5, 15, "Corona Inc.", 20);
+//
+//        // not storing the crates, users and orders directly. They are stored transitively (CASCADE.MERGE) when the bottles and orderItems are stored.
+//
+//        Crate PepsiCrate = new Crate("PepsiCrate", "https://cdn.pixabay.com/photo/2015/07/13/18/46/pepsi-843648_960_720.jpg", 6, 10, 1, Pepsi);
+//        Crate BeerCrate = new Crate("CoronaCrate", "https://cdn.pixabay.com/photo/2014/08/10/18/06/beer-414914_960_720.jpg", 6, 15, 2, Corona);
+//
+//        Address firstAddress = new Address(1L, "Baker Street", "22A", "96047");
+//        Address secondAddress = new Address(2L, "Pasadena", "4C", "96052");
+//
+//        // Saving two addresses
+//        this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
+//
+//        User Dan = new User(1L, "DanTheMan", "Man123", LocalDate.of(1991, 10, 12),null);
+//        User Jessica = new User(2L, "JessicaChobot", "Woman123", LocalDate.of(1994, 11, 23),null);
+//
+//        Orders BottleOrder =
+//                new Orders(1L, 48,  Dan);
+//        Orders CrateOrder = new Orders(2L, 15, Jessica);
+//
+//
+//        OrderItem bottleItem = new OrderItem(1L, "1", 12, 4, BottleOrder, Pepsi);
+//        OrderItem crateItem = new OrderItem(2L, "2", 15, 1, CrateOrder, BeerCrate);
+//
+//
+//        // saving bottles & orderItems
+//        this.bottleRepo.saveAll(Arrays.asList(Pepsi, Cola, Corona));
+//        this.crateRepo.saveAll(Arrays.asList(PepsiCrate, BeerCrate));
+//        this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
         //testing
 
     }

@@ -35,11 +35,15 @@ public class OrdersController {
     @GetMapping
     public String getOrdersByUserID(Model model) {
 
+        System.out.println(ordersRepository.findAll());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-        orders=ordersRepository.findAllByUserID(userRepository.findAUser().getId());
+
+        orders=ordersRepository.findAllByUserID(userRepository.findAllUser().getId());
+
 
         for(int i=0; i<orders.stream().count();i++) {
-            orderitems.put(orders.get(i).getId(), orderItemRepository.findAllByOrderID(orders.get(i).getId()));
+            orderitems.put(orders.get(i).getId(), orderItemRepository.findAllByOrders(orders.get(i).getId()));
             ordermap.put(orders.get(i).getId(),(orders.get(i).getPrice()));
 
         }
