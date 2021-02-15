@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -12,9 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -22,9 +21,9 @@ import java.util.Set;
 @Entity
 
 @ToString
-//@NamedEntityGraph(name = "User.orders", attributeNodes = @NamedAttributeNode(value = "orders"))
+@NamedEntityGraph(name = "User.orders", attributeNodes = @NamedAttributeNode(value = "orders"))
 @Table(name = "Users", schema = "public")
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -40,42 +39,49 @@ public class User {
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Orders> orders;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "user_address",
             joinColumns=@JoinColumn(name="user_id",nullable = false),
            inverseJoinColumns = @JoinColumn(name="address_id"))
-   private Set<Address> addresses;
+   private Set<Address> addresses = new HashSet<Address>();
 
     private boolean active;
     private String roles;
-//
+
+
+
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return null;
+//        return Arrays.asList(new SimpleGrantedAuthority(this.roles));
 //    }
 //
 //    @Override
 //    public String getUsername() {
-//        return null;
+//        return this.userName;
+//    }
+//
+//    @Override
+//    public String getPassword(){
+//        return this.password;
 //    }
 //
 //    @Override
 //    public boolean isAccountNonExpired() {
-//        return false;
+//        return true;
 //    }
 //
 //    @Override
 //    public boolean isAccountNonLocked() {
-//        return false;
+//        return true;
 //    }
 //
 //    @Override
 //    public boolean isCredentialsNonExpired() {
-//        return false;
+//        return true;
 //    }
 //
 //    @Override
 //    public boolean isEnabled() {
-//        return false;
+//        return true;
 //    }
 }

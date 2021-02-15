@@ -35,23 +35,26 @@ public class OrdersController {
     @GetMapping
     public String getOrdersByUserID(Model model) {
 
-        System.out.println(ordersRepository.findAll());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
+        System.out.println(userRepository.findUserByUserName("DanTheMan"));
 
-        orders=ordersRepository.findAllByUserID(userRepository.findAllUser().getId());
-
-
-        for(int i=0; i<orders.stream().count();i++) {
-            orderitems.put(orders.get(i).getId(), orderItemRepository.findAllByOrders(orders.get(i).getId()));
-            ordermap.put(orders.get(i).getId(),(orders.get(i).getPrice()));
-
-        }
-        System.out.println(ordermap.get(7L));
-        model.addAttribute("allordersmap", this.orderitems);
-        model.addAttribute("ordermap", this.ordermap);
-
-        System.out.println(orderitems);
+//        System.out.println(ordersRepository.findAll());
+//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//
+//
+//        orders=ordersRepository.findAllByUserID(userRepository.findAllUser().getId());
+//
+//
+//        for(int i=0; i<orders.stream().count();i++) {
+//            orderitems.put(orders.get(i).getId(), orderItemRepository.findAllByOrders(orders.get(i).getId()));
+//            ordermap.put(orders.get(i).getId(),(orders.get(i).getPrice()));
+//
+//        }
+//        System.out.println(ordermap.get(7L));
+//        model.addAttribute("allordersmap", this.orderitems);
+//        model.addAttribute("ordermap", this.ordermap);
+//
+//        System.out.println(orderitems);
 
 
 
