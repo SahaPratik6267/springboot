@@ -15,6 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public User findAllUser();
 
 
+    @EntityGraph(value="")
     public User findUserByUserName(String userName);
 
 }
