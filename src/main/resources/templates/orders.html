@@ -38,28 +38,28 @@
 
                 </tr>
                 </thead>
-                <tbody th:each="entry: ${allordersmap}">
-                <tr th:each="orderItem : ${entry.value}">
-                    <td th:text="${orderItem.Orders.user.username}"></td>
-                    <td th:text="${orderItem.Beverage.name}"></td>
-                    <td th:text="${orderItem.Price}"></td>
-                    <td th:text="${orderItem.quantity}"></td>
-                    <td th:text="${orderItem.position}"></td>
-                    <td><img th:src="${orderItem.Beverage.bottlePic}" style="width: auto; height: 100px;"></td>
-                </tr>
+<!--                <tbody th:each="entry: ${orders}">-->
+<!--                <tr th:each="orderItem : ${entry.orderItems}">-->
+<!--&lt;!&ndash;                    <td th:text="${orderItem.Orders.user.username}"></td>&ndash;&gt;-->
+<!--                    <td th:text="${orderItem.Beverage.name}"></td>-->
+<!--                    <td th:text="${orderItem.Price}"></td>-->
+<!--                    <td th:text="${orderItem.quantity}"></td>-->
+<!--                    <td th:text="${orderItem.position}"></td>-->
+<!--                    <td><img th:src="${orderItem.Beverage.bottlePic}" style="width: auto; height: 100px;"></td>-->
+<!--                </tr>-->
 
 
-                </tbody>
-            </table>
-            <table class="table table-sm table-info text-center">
-                <thead class="thead-info">
-                <tr>
-                    <th scope="col">Total Price</th>
-                </tr>
-                </thead>
-                <tbody th:each="entry: ${allordersmap}">
-                <tr th:each="orderItem, iterStat : ${entry.value}" th:if="${iterStat.index >= iterStat.size-1}">
-                    <td th:text="${orderItem.Orders.price}"></td>
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <table class="table table-sm table-info text-center">-->
+<!--                <thead class="thead-info">-->
+<!--                <tr>-->
+<!--                    <th scope="col">Total Price</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody th:each="entry: ${allordersmap}">-->
+<!--                <tr th:each="orderItem, iterStat : ${entry.value}" th:if="${iterStat.index >= iterStat.size-1}">-->
+<!--                    <td th:text="${orderItem.Orders.price}"></td>-->
                 </tr>
                 </tbody>
             </table>

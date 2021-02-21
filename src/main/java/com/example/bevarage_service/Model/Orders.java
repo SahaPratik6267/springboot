@@ -15,7 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="orders")
-//@NamedEntityGraph(name = "Orders.users", attributeNodes = @NamedAttributeNode(value="user"))
+//@NamedEntityGraph(name = "Orders.orderitems",
+//        attributeNodes = {
+//                @NamedAttributeNode(value = "orderItems", subgraph = "OrderItems.Beverage")
+//        },
+//        subgraphs = {
+//                @NamedSubgraph(name = "OrderItems.Beverage", attributeNodes = @NamedAttributeNode("beverage"))
+//        }
+//)
 
 public class Orders {
     @Id
@@ -23,8 +30,8 @@ public class Orders {
     private Long id;
     @Positive(message = "Price must be greater than zero")
     private int price;
- //   @OneToMany(mappedBy = "orders")
-  //  private List<OrderItem> orderitems;
+    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
+    private List<OrderItem> orderItems;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
     private User users;

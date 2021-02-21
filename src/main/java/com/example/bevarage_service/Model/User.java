@@ -21,7 +21,6 @@ import java.util.*;
 @Entity
 
 @ToString
-@NamedEntityGraph(name = "User.orders", attributeNodes = @NamedAttributeNode(value = "orders"))
 @Table(name = "Users", schema = "public")
 public class User implements UserDetails{
     @Id

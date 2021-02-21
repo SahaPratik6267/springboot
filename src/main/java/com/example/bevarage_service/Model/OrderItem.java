@@ -13,7 +13,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@NamedEntityGraph(name= "OrderItem.orders", attributeNodes = @NamedAttributeNode("orders"))
+//@NamedEntityGraph(name= "OrderItem.orders", attributeNodes = @NamedAttributeNode("orders"))
 //@NamedQuery(name = "OrderItem.findAllByCurrentUser",query = "select u from OrderItem u where u.orders.id = 1")
 public class OrderItem {
     @Id
@@ -27,7 +27,7 @@ public class OrderItem {
     private int quantity;
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Orders orders;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Beverage beverage;
 }
 
