@@ -42,14 +42,14 @@ public class OrdersController {
 //
 //
 //
-//        User user=(userRepository.findUserByUserName("DanTheMan"));
+        User user=(userRepository.findUserByUserName("DanTheMan"));
 //      //  List<Orders> orders=  ordersRepository.findAllByusers(user);
 //
 //
 //
 //
 //
-//        orders=ordersRepository.findAllByusers(user);
+        orders=ordersRepository.findAllByusers(user);
 
 
 //        for(int i=0; i<orders.stream().count();i++) {
@@ -60,7 +60,7 @@ public class OrdersController {
 //        System.out.println(ordermap.get(7L));
 //        model.addAttribute("allordersmap", this.orderitems);
 //        model.addAttribute("ordermap", this.ordermap);
-//        model.addAttribute("orders",this.orders);
+        model.addAttribute("orders",this.orders);
 
 //        System.out.println(orderitems);
 

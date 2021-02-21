@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Orders</title>
+    <title>All Orders</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -23,12 +23,13 @@
 <div class="container">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-6 text-center">
-            <h2>Orders for User1</h2>
+            <h2>All Orders</h2>
         </div>
         <div class="col-md-10">
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
+                    <th scope="col">User</th>
                     <th scope="col">Item</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
@@ -39,24 +40,12 @@
                 </thead>
                 <tbody th:each="entry: ${orders}">
                 <tr th:each="orderItem : ${entry.orderItems}">
+                    <td th:text="${orderItem.orders.users.userName}"></td>
                     <td th:text="${orderItem.Beverage.name}"></td>
                     <td th:text="${orderItem.Price}"></td>
                     <td th:text="${orderItem.quantity}"></td>
                     <td th:text="${orderItem.position}"></td>
                     <td><img th:src="${orderItem.Beverage.bottlePic}" style="width: auto; height: 100px;"></td>
-                </tr>
-                </tbody>
-            </table>
-
-            <table class="table table-sm table-info text-center">
-                <thead class="thead-info">
-                <tr>
-                    <th scope="col">Total Price</th>
-                </tr>
-                </thead>
-                <tbody th:each="entry: ${orders}">
-                <tr th:each="orderItem, iterStat : ${entry.orderItems}" th:if="${iterStat.index >= iterStat.size-1}">
-                    <td th:text="${orderItem.Orders.price}"></td>
                 </tr>
                 </tbody>
             </table>
