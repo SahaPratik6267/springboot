@@ -1,9 +1,6 @@
 package com.example.bevarage_service.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,9 +16,10 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+@EqualsAndHashCode(exclude={"orders", "addresses"})
 @ToString
 @Table(name = "Users", schema = "public")
+@NamedEntityGraph(name = "user.user")
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +27,7 @@ public class User implements UserDetails{
     private Long id;
     @NotNull(message = "Name must be set")
     @NotEmpty(message = "Name not there")
-    private String userName;
+    public String userName;
     @NotNull(message = "password must be set")
     @NotEmpty(message = "password not there")
     private String password;
@@ -38,7 +36,7 @@ public class User implements UserDetails{
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Orders> orders;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_address",
             joinColumns=@JoinColumn(name="user_id",nullable = false),
            inverseJoinColumns = @JoinColumn(name="address_id"))

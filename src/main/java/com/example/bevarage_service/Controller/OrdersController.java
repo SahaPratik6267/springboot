@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
 @Controller
-@RequestMapping(value = "orders")
+@RequestMapping(value = {"orders"})
+
 public class OrdersController {
 
-    public List<Orders> orders;
+    public List<Orders> orders= new ArrayList<>();
     final OrderItemRepository orderItemRepository;
     final OrdersRepository ordersRepository;
     final UserRepository userRepository;
@@ -37,19 +38,51 @@ public class OrdersController {
     @GetMapping
     public String getOrdersByUserID(Model model) throws IllegalAccessException, InstantiationException {
 
+//        orders.clear();
+        User user=(userRepository.findUserByUserName("DanTheMan"));
+//        if (user.getRoles() =="ADMIN"){
+//
+//            orders= ordersRepository.findAll();
+//
+//
+//            model.addAttribute("orders",this.orders);
+//
+//            return "ordersAll";
+//
+//
+//        } else
+//        {
+            orders = ordersRepository.findAllByusers(user);
+            model.addAttribute("orders",this.orders);
+
+            return "orders";
+
+
 //        Session session= SessionFactory.class.newInstance().openSession();
 //        Orders ord = session.find(Orders.class,1L, Collections.singletonMap("javax.persistence.fetchgraph",session.getEntityGraph("Orders.orderitems")));
 //
 //
+//        if(orders.stream().count()>0){orders.clear();}
 //
-        User user=(userRepository.findUserByUserName("DanTheMan"));
+//        if (user.getRoles() =="ADMIN"){
+//
+//            orders= ordersRepository.findAll();
+//
+//
+//            model.addAttribute("orders",this.orders);
+//
+//            return "ordersAll";
+//
+//
+//        }
+//        else {
 //      //  List<Orders> orders=  ordersRepository.findAllByusers(user);
 //
 //
 //
 //
 //
-        orders=ordersRepository.findAllByusers(user);
+
 
 
 //        for(int i=0; i<orders.stream().count();i++) {
@@ -60,13 +93,13 @@ public class OrdersController {
 //        System.out.println(ordermap.get(7L));
 //        model.addAttribute("allordersmap", this.orderitems);
 //        model.addAttribute("ordermap", this.ordermap);
-        model.addAttribute("orders",this.orders);
+//        model.addAttribute("orders",this.orders);
 
 //        System.out.println(orderitems);
 
 
 
 
-        return "orders";
+//        return "orders";
     }
 }

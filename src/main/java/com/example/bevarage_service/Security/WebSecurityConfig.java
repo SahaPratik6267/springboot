@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 .antMatchers("/beverage").permitAll()
                 .antMatchers("/basket").permitAll()
                 .antMatchers("/orders").permitAll()
+                .antMatchers("/ordersAll").permitAll()
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginProcessingUrl("/basket")
                 .and().logout().logoutSuccessUrl("/beverage");

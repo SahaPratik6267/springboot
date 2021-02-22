@@ -12,8 +12,7 @@ import java.util.Optional;
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
 
-   @Query(value = "SELECT * FROM ORDERS WHERE USER_ID= ?1", nativeQuery = true)
-   List<Orders> findAllByUserID(Long Id);
+
 
    //@EntityGraph(value = "Orders.orderItems", attributePaths = {"orderItems"})
    @EntityGraph(value = "Orders.orderitems")
