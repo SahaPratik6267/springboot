@@ -32,26 +32,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
         return new HttpSessionEventPublisher();
     }
 
-
+// Authentication
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(this.userDetailsService).passwordEncoder(this.createEncoder());
     }
 
+
+    //Authorization
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.sessionManagement().maximumSessions(2).and().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+//        http.sessionManagement().maximumSessions(2).and().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
         http.authorizeRequests()
-                .antMatchers("/beverage").permitAll()
-                .antMatchers("/basket").permitAll()
-                .antMatchers("/orders").permitAll()
-                .antMatchers("/").permitAll()
-                .and().formLogin().loginProcessingUrl("/basket")
-                .and().logout().logoutSuccessUrl("/beverage");
+                .antMatchers("/beverage").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/orders").hasRole("USER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/beverage", true);
     }
-
-
-
 }
 
 

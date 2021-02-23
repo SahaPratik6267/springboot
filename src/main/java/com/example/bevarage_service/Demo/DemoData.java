@@ -52,8 +52,8 @@
 //
 //
 //
-//        User Dan = new User(1L, "DanTheMan", new BCryptPasswordEncoder().encode("man123"), LocalDate.of(1991, 10, 12),null,null,true,"ADMIN");
-//        User test= new User(2L,"test", new BCryptPasswordEncoder().encode("test"),LocalDate.of(1991, 10, 12),null,null,true,"ADMIN");
+//        User Dan = new User(1L, "DanTheMan", new BCryptPasswordEncoder().encode("man123"), LocalDate.of(1991, 10, 12),null,null,true,"ROLE_USER");
+//        User test= new User(2L,"test", new BCryptPasswordEncoder().encode("test"),LocalDate.of(1991, 10, 12),null,null,true,"ROLE_ADMIN");
 //        this.userRepos.saveAll(Arrays.asList(Dan,test));
 //
 //
