@@ -15,14 +15,30 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="orders")
+//@NamedEntityGraphs({
+//@NamedEntityGraph(name = "Orders.orderitems.admin",
+//        attributeNodes = {
+//                @NamedAttributeNode(value = "orderItems", subgraph = "OrderItems.Beverage"),
+//                @NamedAttributeNode(value = "users")
+//        },
+//        subgraphs = {
+//                @NamedSubgraph(name = "OrderItems.Beverage", attributeNodes = @NamedAttributeNode("beverage"))
+//        }
+//
+//),
+
 @NamedEntityGraph(name = "Orders.orderitems",
         attributeNodes = {
-                @NamedAttributeNode(value = "orderItems", subgraph = "OrderItems.Beverage")
+                @NamedAttributeNode(value = "orderItems", subgraph = "OrderItems.Beverage"),
+                @NamedAttributeNode(value = "users")
+
         },
         subgraphs = {
                 @NamedSubgraph(name = "OrderItems.Beverage", attributeNodes = @NamedAttributeNode("beverage"))
         }
+
 )
+//})
 
 public class Orders {
     @Id
