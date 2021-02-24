@@ -23,44 +23,44 @@
 <div class="container">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-6 text-center">
-            <h2>Orders here</h2>
+            <h2>Orders for User1</h2>
         </div>
         <div class="col-md-10">
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">User Name</th>
                     <th scope="col">Item</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Position</th>
+                    <th scope="col">Image</th>
 
                 </tr>
                 </thead>
-                <tbody th:each="entry: ${allordersmap}">
-                <tr th:each="orderItem : ${entry.value}">
-                    <td th:text="${orderItem.Orders.user.username}"></td>
+                <tbody th:each="entry: ${orders}">
+                <tr th:each="orderItem : ${entry.orderItems}">
                     <td th:text="${orderItem.Beverage.name}"></td>
                     <td th:text="${orderItem.Price}"></td>
                     <td th:text="${orderItem.quantity}"></td>
                     <td th:text="${orderItem.position}"></td>
+                    <td><img th:src="${orderItem.Beverage.bottlePic}" style="width: auto; height: 100px;"></td>
                 </tr>
-
-
                 </tbody>
             </table>
+
             <table class="table table-sm table-info text-center">
                 <thead class="thead-info">
                 <tr>
                     <th scope="col">Total Price</th>
                 </tr>
                 </thead>
-                <tbody th:each="entry: ${allordersmap}">
-                <tr th:each="orderItem : ${entry.value}">
+                <tbody th:each="entry: ${orders}">
+                <tr th:each="orderItem, iterStat : ${entry.orderItems}" th:if="${iterStat.index >= iterStat.size-1}">
                     <td th:text="${orderItem.Orders.price}"></td>
                 </tr>
                 </tbody>
             </table>
+
         </div><!--  col  -->
     </div><!--  row  -->
 </div><!--  container  -->

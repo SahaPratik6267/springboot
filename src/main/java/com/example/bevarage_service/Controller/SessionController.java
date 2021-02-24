@@ -15,6 +15,14 @@ import java.util.List;
 
 @Controller
 public class SessionController {
+    @PostMapping("/login")
+    public String usersession(HttpServletRequest request){
+
+        System.out.println("Her comes furst");
+
+        return "redirect:/beverage";
+
+    }
     @PostMapping("/addToCart")
     public String addToCart(@RequestParam Long b_id, @RequestParam String b_name, @RequestParam int b_price, HttpServletRequest request) {
 

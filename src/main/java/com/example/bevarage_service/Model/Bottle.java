@@ -20,7 +20,7 @@ public class Bottle extends Beverage {
     private String name;
     @NotNull
     @Pattern(regexp = "(https:\\/\\/).*\\.(?:jpg|gif|png)", message = "Must be a valid URL to a picture.")
-    private String bottlePic;
+    private String Pic;
     @Positive(message = "Volume must be greater than zero")
     private double volume;
     private boolean isAlcoholic;
@@ -38,7 +38,7 @@ public class Bottle extends Beverage {
     public Bottle(@NotNull(message = "Name must be set") @NotEmpty(message = "Name not there") @Pattern(regexp = "^[0-9a-zA-Z]+$") String name, @NotNull @Pattern(regexp = "(https:\\/\\/).*\\.(?:jpg|gif|png)", message = "Must be a valid URL to a picture.") String bottlePic, @Positive(message = "Volume must be greater than zero") double volume, @PositiveOrZero double volumePercent, @Positive(message = "Price must be greater than zero") int price, @NotNull(message = "Supplier name must be set") @NotEmpty(message = "Supplier name not there") String supplier, @PositiveOrZero(message = "Stock can not be less than zero") int inStock) {
         super();
         this.name = name;
-        this.bottlePic = bottlePic;
+        this.Pic = bottlePic;
         this.volume = volume;
         this.volumePercent = volumePercent;
         if (volumePercent > 0.0) {
