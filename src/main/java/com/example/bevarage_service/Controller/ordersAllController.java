@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
 @Controller
-@RequestMapping(value = {"ordersAll"})
+@RequestMapping(value = {"ordersall"})
 
 public class ordersAllController {
 
@@ -35,7 +35,7 @@ public class ordersAllController {
 
 
     @GetMapping
-    public String getOrdersByUserID(Model model) throws IllegalAccessException, InstantiationException {
+    public String allorders(Model model) throws IllegalAccessException, InstantiationException {
 
         System.out.println("wghatsghkjhsf");
         List<User> users = userRepository.findAll();

@@ -28,9 +28,9 @@
             <form method="POST" th:action="@{/beverage/bottle}" th:object="${bottle}">
                 <tr>
                     <td>
-                        URL: <input name="bottlePic" th:field="*{bottlePic}" type="text"/>
-                        <span class="text-danger" th:if="${#fields.hasErrors('bottlePic')}"
-                              th:errors="*{bottlePic}"></span>
+                        URL: <input name="Pic" th:field="*{Pic}" type="text"/>
+                        <span class="text-danger" th:if="${#fields.hasErrors('Pic')}"
+                              th:errors="*{Pic}"></span>
                     </td>
                     <td>
                         Name: <input name="name" th:field="*{name}" type="text">
@@ -73,7 +73,7 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="bottles : ${Bottles}">
             <div class="card">
-                <img th:src="${bottles.bottlePic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">
+                <img th:src="${bottles.Pic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">
                 <div class="card-body">
                     <h5 class="card-title" th:text="'Beverage name : ' + ${bottles.name} + ''"></h5>
                     <p class="card-text" th:text="'Volume : ' + ${bottles.volume} + 'L'"></p>
@@ -109,9 +109,9 @@
             <form method="POST" th:action="@{/beverage/crate}" th:object="${crate}">
                 <tr>
                     <td>
-                        URL: <input name="cratePic" th:field="*{cratePic}" type="text"/>
-                        <span class="text-danger" th:if="${#fields.hasErrors('cratePic')}"
-                              th:errors="*{cratePic}"></span>
+                        URL: <input name="Pic" th:field="*{Pic}" type="text"/>
+                        <span class="text-danger" th:if="${#fields.hasErrors('Pic')}"
+                              th:errors="*{Pic}"></span>
                     </td>
                     <td>
                         Name: <input name="name" th:field="*{name}" type="text">
@@ -144,7 +144,7 @@
 
         <div class="col-sm-12 col-md-6 col-lg-4 pt-3 pb-3" th:each="crates : ${Crates}">
             <div class="card">
-                <img th:src="${crates.cratePic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">
+                <img th:src="${crates.Pic}" class="card-img-top" alt="..." style="width: 350px; height: 250px;">
                 <div class="card-body">
                     <h5 class="card-title" th:text="'Crate name : ' + ${crates.name} + ''"></h5>
                     <p class="card-text" th:text="'noOfBottles : ' + ${crates.noOfBottles} + ''"></p>

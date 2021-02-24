@@ -45,7 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 //        http.sessionManagement().maximumSessions(2).and().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
         http.authorizeRequests()
                 .antMatchers("/beverage").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/orders").hasRole("USER")
+                .antMatchers("/orders").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/orders").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

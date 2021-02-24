@@ -1,0 +1,12 @@
+runtime: java11
+entrypoint: -java jar bevarage_service-0.0.1-SNAPSHOT.war
+env: standard
+runtime_config:
+  jdk: openjdk11
+env_variables:
+  SPRING_PROFILES_ACTIVE: "production"
+handlers:
+  - url: /.*
+    script: this field is required, but ignored
+manual_scaling:
+  instances: 1

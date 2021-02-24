@@ -9,10 +9,13 @@ import com.example.bevarage_service.repository.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.data.jpa.provider.HibernateUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
@@ -38,9 +41,24 @@ public class OrdersController {
     @GetMapping
     public String getOrdersByUserID(Model model) throws IllegalAccessException, InstantiationException {
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails)principal).getUsername();
+
+        } else {
+            String username = principal.toString();
+        }
+
 //        orders.clear();
-        User user=(userRepository.findUserByUserName("DanTheMan"));
-//        if (user.getRoles() =="ADMIN"){
+        User user=(userRepository.findUserByUserName(((UserDetails)principal).getUsername()));
+        System.out.println(user.getRoles());
+        if (user.getRoles().equals("ROLE_ADMIN")){
+
+           System.out.println(user.getRoles());
+            return "redirect:ordersall";
+        }
 //
 //            orders= ordersRepository.findAll();
 //
