@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -32,7 +31,7 @@ public class Address {
     @NotEmpty(message = "Postal code not there")
     @Pattern(regexp = "\\b\\d{5}\\b")
     private String postalCode;
-   @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-   private Set<User> users= new HashSet<User>();
+//   @ManyToMany (mappedBy = "addresses", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//   private Set<Users> users= new HashSet<Users>();
 
 }

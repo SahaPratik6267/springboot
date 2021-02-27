@@ -27,7 +27,7 @@ public class OrderItem {
     private int quantity;
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Orders orders;
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Beverage beverage;
 }
 

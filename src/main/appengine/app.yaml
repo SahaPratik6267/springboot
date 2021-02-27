@@ -1,12 +1,14 @@
 runtime: java11
-entrypoint: -java jar bevarage_service-0.0.1-SNAPSHOT.war
+#entrypoint: java -jar bevarage_service-0.0.1-SNAPSHOT.war
 env: standard
-runtime_config:
-  jdk: openjdk11
-env_variables:
-  SPRING_PROFILES_ACTIVE: "production"
-handlers:
-  - url: /.*
-    script: this field is required, but ignored
+#runtime_config:
+#  jdk: openjdk11
+#env_variables:
+#  SPRING_PROFILES_ACTIVE: "production"
+#handlers:
+#  - url: /.*
+#    script: this field is required, but ignored
+#beta_settings:
+#  cloud_sql_instances: "springbootgradle-305815:europe-west3:postgresqlgrp10"
 manual_scaling:
   instances: 1

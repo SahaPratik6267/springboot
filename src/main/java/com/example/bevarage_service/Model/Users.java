@@ -16,11 +16,10 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EqualsAndHashCode(exclude={"orders", "addresses"})
 @ToString
-@Table(name = "Users", schema = "public")
+//@Table(name = "Users", schema = "public")
 @NamedEntityGraph(name = "user.user")
-public class User implements UserDetails{
+public class Users implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -36,11 +35,11 @@ public class User implements UserDetails{
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Orders> orders;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_address",
-            joinColumns=@JoinColumn(name="user_id",nullable = false),
-           inverseJoinColumns = @JoinColumn(name="address_id"))
-   private Set<Address> addresses = new HashSet<Address>();
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_address",
+//            joinColumns=@JoinColumn(name="user_id",nullable = false),
+//           inverseJoinColumns = @JoinColumn(name="address_id"))
+//   private Set<Address> addresses = new HashSet<Address>();
 
     private boolean active;
     private String roles;

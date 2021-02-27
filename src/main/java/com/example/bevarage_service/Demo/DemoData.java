@@ -1,8 +1,8 @@
 package com.example.bevarage_service.Demo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,15 +10,13 @@ import java.util.Set;
 import com.example.bevarage_service.Model.*;
 import com.example.bevarage_service.repository.*;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.session.config.annotation.web.server.EnableSpringWebSession;
 import org.springframework.stereotype.Component;
+
 
 @Slf4j
 @Component
@@ -50,19 +48,39 @@ public class DemoData {
     @EventListener
     public void createDemoData(ApplicationReadyEvent event) {
 
+        log.info("demo data started");
 
 
-        User Dan = new User(1L, "DanTheMan", new BCryptPasswordEncoder().encode("man123"), LocalDate.of(1991, 10, 12),null,null,true,"ROLE_USER");
-        User test= new User(2L,"test", new BCryptPasswordEncoder().encode("test"),LocalDate.of(1991, 10, 12),null,null,true,"ROLE_ADMIN");
-        this.userRepos.saveAll(Arrays.asList(Dan,test));
 
-
-        Address firstAddress = new Address(1L, "Baker Street", "22A", "96047",null);
-        Address secondAddress = new Address(2L, "Pasadena", "4C", "96052",null);
-
+        Users Dan = new Users(1L, "DanTheMan", new BCryptPasswordEncoder().encode("man123"), LocalDate.of(1991, 10, 12),null,true,"ROLE_USER");
+        log.info("dan");
+        Users test= new Users(2L,"test", new BCryptPasswordEncoder().encode("test"),LocalDate.of(1991, 10, 12),null,true,"ROLE_ADMIN");
+        log.info("test");
 
         this.userRepos.saveAll(Arrays.asList(Dan,test));
+
+
+//        Set<Users> users = new HashSet();
+//        users.add(Dan);
+//        users.add(test);
+
+        log.info("save");
+
+        Address firstAddress = new Address(1L, "Baker Street", "22A", "96047");
+        log.info("add1");
+        Address secondAddress = new Address(2L, "Pasadena", "4C", "96052");
         this.addressRepo.saveAll(Arrays.asList(firstAddress, secondAddress));
+
+//        Set<Address> address= new HashSet<>();
+//        address.add(firstAddress);
+//        address.add(secondAddress);
+//
+//        Dan.setAddresses(address);
+//        test.setAddresses(address);
+
+
+//        this.userRepos.saveAll(Arrays.asList(Dan,test));
+
 
 
 
@@ -81,8 +99,6 @@ public class DemoData {
         // Saving two addresses
 
 
-
-
         Orders BottleOrder =
                 new Orders(1L, 48,null,  Dan);
         Orders CrateOrder = new Orders(2L, 15,null, test);
@@ -98,7 +114,7 @@ public class DemoData {
         this.orderItemRepo.saveAll(Arrays.asList(bottleItem, crateItem));
 
 
-
+        log.info("demo data ended");
 
 
     }

@@ -1,14 +1,10 @@
 package com.example.bevarage_service.Controller;
 
-import com.example.bevarage_service.Model.OrderItem;
 import com.example.bevarage_service.Model.Orders;
-import com.example.bevarage_service.Model.User;
+import com.example.bevarage_service.Model.Users;
 import com.example.bevarage_service.repository.OrderItemRepository;
 import com.example.bevarage_service.repository.OrdersRepository;
 import com.example.bevarage_service.repository.UserRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,9 +34,9 @@ public class ordersAllController {
     public String allorders(Model model) throws IllegalAccessException, InstantiationException {
 
         System.out.println("wghatsghkjhsf");
-        List<User> users = userRepository.findAll();
+        List<Users> users = userRepository.findAll();
 
-        for (User user:users
+        for (Users user:users
              ) {
             orders.addAll(ordersRepository.findAllByusers(user));
 

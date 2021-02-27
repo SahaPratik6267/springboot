@@ -2,20 +2,16 @@ package com.example.bevarage_service.Controller;
 
 import com.example.bevarage_service.Model.OrderItem;
 import com.example.bevarage_service.Model.Orders;
-import com.example.bevarage_service.Model.User;
+import com.example.bevarage_service.Model.Users;
 import com.example.bevarage_service.repository.OrderItemRepository;
 import com.example.bevarage_service.repository.OrdersRepository;
 import com.example.bevarage_service.repository.UserRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
@@ -52,7 +48,7 @@ public class OrdersController {
         }
 
 //        orders.clear();
-        User user=(userRepository.findUserByUserName(((UserDetails)principal).getUsername()));
+        Users user=(userRepository.findUserByUserName(((UserDetails)principal).getUsername()));
         System.out.println(user.getRoles());
         if (user.getRoles().equals("ROLE_ADMIN")){
 

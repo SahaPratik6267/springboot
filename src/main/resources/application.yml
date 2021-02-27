@@ -10,37 +10,50 @@
 
 #Connection to postgres
 
-spring.datasource.url: jdbc:postgresql://localhost:5432/sample
-spring.datasource.username: postgres
-spring.datasource.password: postgres
-spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+ spring.cloud.gcp.sql.enabled: true
+ spring.cloud.gcp.sql.database-name: test
+ spring.cloud.gcp.sql.instance-connection-name: springbootgradle-305815:europe-west3:postgresqlgrp10
+ spring.datasource.username: postgres
+ spring.datasource.password: postgres
+ spring.datasource.continue-on-error: true
+ spring.datasource.initialization-mode: always
+ spring.datasource.driverClassName: org.postgresql.Driver
+ spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+ spring.devtools.restart.log-condition-evaluation-delta: false
+
+#
+##
+#
+# spring.datasource.url: jdbc:postgresql://35.234.78.56:5432/test
+# spring.datasource.username: postgres
+# spring.datasource.password: postgres
+# spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
 
 #drop n create table again, good for testing, comment this in production
-spring.jpa.hibernate.ddl-auto: update
+ spring.jpa.hibernate.ddl-auto: create
 
-spring.jpa.open-in-view: false
-
+ spring.jpa.open-in-view: false
+#
 # SQL statements are only printed in the DEBUG mode - setting it to INFO will keep your output clean of SQL statements
-logging.level.org.hibernate.SQL: DEBUG
+ logging.level.org.hibernate.SQL: DEBUG
 # pretty format your output, otherwise you can't read anything by all the numbers used
-spring.jpa.properties.hibernate.format_sql: true
+ spring.jpa.properties.hibernate.format_sql: true
 # you will see the values, which are used to execute queries, especially within the WHERE clause
-logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+ logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 # same setting for transaction management (you will see the transaction context and involved connections to the db)
-logging.level.org.hibernate.transaction: TRACE
-logging.level.org.springframework.transaction: TRACE
-
-# Session
-
-server.servlet.session.timeout: 15m
-
-spring.session.store-type: jdbc
-spring.session.jdbc.initialize-schema: always
-
-spring:
-profiles: default
-message: "Hello, from local!"
----
-spring:
-profiles: production
-message: "Hello, from App Engine!"
+ logging.level.org.hibernate.transaction: TRACE
+ logging.level.org.springframework.transaction: TRACE
+#
+## Session
+#
+#
+# spring.session.store-type: jdbc
+ spring.session.jdbc.initialize-schema: always
+#
+#spring:
+#profiles: default
+#message: "Hello, from local!"
+#---
+#spring:
+#profiles: production
+#message: "Hello, from App Engine!"

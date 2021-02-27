@@ -62,7 +62,7 @@ public class CartController {
 
       //  User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12),null);
 
-        User Dan = new User(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12) ,null,null,true,"ADMIN");
+      //  Users Dan = new Users(null,"DanTheMan", "Man123", LocalDate.of(1991, 10, 12) ,null,null,true,"ADMIN");
 
        int totalPrice=0;
 

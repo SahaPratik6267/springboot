@@ -2,11 +2,8 @@ package com.example.bevarage_service.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -50,6 +47,6 @@ public class Orders {
     private List<OrderItem> orderItems;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-    private User users;
+    private Users users;
 
 }
