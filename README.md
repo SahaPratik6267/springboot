@@ -1,4 +1,4 @@
-# group10
+
 
 Here, in this project, the base endpoint is localhost:8080/beverage . Here, we can add the products to the cart which actually goes through by the session ( one of the requirements of the assignment) .We can also add the bottle and crates to the database in this endpoint through form models which has Bean Validations.
 
